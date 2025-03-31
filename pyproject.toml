@@ -1,0 +1,46 @@
+[project]
+name = "mcp-replicate-designer"
+version = "0.1.0"
+description = "A MCP server for generating images using Replicate's Flux model"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Noel Tovey-Grindlay" }]
+keywords = ["mcp", "llm", "automation", "replicate", "ai", "image", "generation"]
+license = { text = "MIT" }
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+]
+dependencies = ["anyio>=4.5", "click>=8.1.0", "httpx>=0.27", "mcp"]
+
+[project.optional-dependencies]
+dotenv = ["python-dotenv>=1.0.0"]
+
+[project.scripts]
+mcp-replicate-designer = "mcp_replicate_designer.server:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["mcp_replicate_designer"]
+
+[tool.pyright]
+include = ["mcp_replicate_designer"]
+venvPath = "."
+venv = ".venv"
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+ignore = []
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+
+[tool.uv]
+dev-dependencies = ["pyright>=1.1.378", "pytest>=8.3.3", "ruff>=0.6.9"]
