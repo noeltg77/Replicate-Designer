@@ -1,25 +1,23 @@
 {
-  "name": "mcp-replicate-designer",
-  "version": "0.1.0",
-  "description": "A MCP server for generating images using Replicate's Flux model",
+  "name": "replicate-designer",
+  "version": "1.0.0",
+  "description": "Replicate MCP Server for image generation",
   "main": "index.js",
+  "bin": {
+    "replicate-designer": "./index.js"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "python -m mcp_replicate_designer"
+    "start": "node index.js"
   },
   "keywords": [
     "mcp",
-    "llm",
-    "automation",
     "replicate",
-    "ai",
-    "image",
-    "generation"
+    "modelcontextprotocol"
   ],
   "author": "Noel Tovey-Grindlay",
-  "license": "MIT",
-  "private": true,
-  "engines": {
-    "node": ">=18.0.0"
+  "license": "ISC",
+  "dependencies": {
+    "@modelcontextprotocol/mcp": "^0.9.0",
+    "replicate": "^0.25.1"
   }
 }
