@@ -17,7 +17,6 @@
   "author": "Noel Tovey-Grindlay",
   "license": "ISC",
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^0.9.0",
     "replicate": "^0.25.1"
   }
 }
