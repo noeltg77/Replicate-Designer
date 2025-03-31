@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const { StdioTransport, MCPServer } = require('@modelcontextprotocol/mcp');
+const { StdioTransport, McpServer } = require('@modelcontextprotocol/sdk');
 const Replicate = require('replicate');
 
 // Initialize Replicate client
@@ -8,8 +8,15 @@ const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN,
 });
 
+// Create MCP server
+const server = new McpServer({
+  name: "Replicate Designer",
+  version: "1.0.0",
+  transport: new StdioTransport()
+});
+
 // Define the image generation tool
-const generateImageTool = {
+server.tool({
   name: 'generate_image',
   description: 'Generates an image using Replicate\'s Flux 1.1 Pro model.',
   parameters: {
@@ -72,14 +79,9 @@ const generateImageTool = {
       throw new Error(`Image generation failed: ${error.message}`);
     }
   }
-};
-
-// Create and start MCP server
-const server = new MCPServer({
-  transport: new StdioTransport(),
-  tools: [generateImageTool]
 });
 
+// Start the server
 server.start().catch(error => {
   console.error('Error starting MCP server:', error);
   process.exit(1);
